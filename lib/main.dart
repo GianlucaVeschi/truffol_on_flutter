@@ -39,7 +39,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'Fetch Data Example',
       theme: ThemeData(
-        primaryColor: Colors.red,
+        primaryColor: Colors.lightBlueAccent,
       ),
       home: Scaffold(
         appBar: AppBar(
@@ -49,33 +49,39 @@ class _MyAppState extends State<MyApp> {
           future: futureTruffle,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return ListView.builder(
-                itemCount: snapshot.data!.length,
-                itemBuilder: (_, index) => Container(
-                  child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                    padding: EdgeInsets.all(20.0),
-                    decoration: BoxDecoration(
-                      color: Color(0xff9778FF),
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "${snapshot.data![index].title}",
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                        Text("${snapshot.data![index].description}"),
-                      ],
-                    ),
-                  ),
+              return GridView.builder(
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 200,
+                  childAspectRatio: 3 / 2,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 20,
                 ),
+                itemCount: snapshot.data!.length,
+                itemBuilder: (_, index) =>
+                    Container(
+                      child: Container(
+                        margin: EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 5),
+                        padding: EdgeInsets.all(20.0),
+                        decoration: BoxDecoration(
+                          color: Colors.lightBlueAccent,
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "${snapshot.data![index].title}",
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
               );
             } else {
               return Center(child: CircularProgressIndicator());

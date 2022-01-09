@@ -51,40 +51,48 @@ class _MyAppState extends State<MyApp> {
             if (snapshot.hasData) {
               return GridView.builder(
                 gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 200,
-                  childAspectRatio: 3 / 2,
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 20,
+                  maxCrossAxisExtent: 300,
+                  childAspectRatio: 2 / 2,
+                  crossAxisSpacing: 1,
+                  mainAxisSpacing: 1,
                 ),
                 itemCount: snapshot.data!.length,
-                itemBuilder: (_, index) =>
-                    Container(
-                      child: Container(
-                        margin: EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 5),
-                        padding: EdgeInsets.all(20.0),
-                        decoration: BoxDecoration(
-                          color: Colors.lightBlueAccent,
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "${snapshot.data![index].title}",
-                              style: TextStyle(
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
+                itemBuilder: (_, index) => Container(
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                  padding: const EdgeInsets.all(20.0),
+                  decoration: BoxDecoration(
+                    color: Colors.lightBlueAccent,
+                    borderRadius: BorderRadius.circular(40.0),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        snapshot.data![index].title,
+                        style: const TextStyle(
+                          fontSize: 22.0,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ),
+                      // If your container has a fixed height use the following code
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.fill,
+                            image: NetworkImage(snapshot.data![index].imageUrl),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               );
             } else {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             }
           },
         ),

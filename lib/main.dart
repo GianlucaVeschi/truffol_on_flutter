@@ -45,6 +45,7 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Truffol on Flutter'),
           centerTitle: true,
+          backgroundColor: Colors.green,
         ),
         body: FutureBuilder<List<Truffle>>(
           future: futureTruffle,
@@ -63,8 +64,9 @@ class _MyAppState extends State<MyApp> {
                       const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                   padding: const EdgeInsets.all(20.0),
                   decoration: BoxDecoration(
-                    color: Colors.lightBlueAccent,
+                    color: Colors.white,
                     borderRadius: BorderRadius.circular(40.0),
+                    border: Border.all(width: 0.5)
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -100,6 +102,7 @@ class _MyAppState extends State<MyApp> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {  },
           child: Text("click"),
+          backgroundColor: Colors.green,
         ),
       ),
     );

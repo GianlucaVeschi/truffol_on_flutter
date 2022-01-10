@@ -43,7 +43,8 @@ class _MyAppState extends State<MyApp> {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Fetch Data Example'),
+          title: const Text('Truffol on Flutter'),
+          centerTitle: true,
         ),
         body: FutureBuilder<List<Truffle>>(
           future: futureTruffle,
@@ -95,6 +96,10 @@ class _MyAppState extends State<MyApp> {
               return const Center(child: CircularProgressIndicator());
             }
           },
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {  },
+          child: Text("click"),
         ),
       ),
     );
